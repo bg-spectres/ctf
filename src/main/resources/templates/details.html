@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<meta charset="UTF-8" />
+<title>Spectres CTF</title>
+<link rel="stylesheet" type="text/css" href="css/my.css" />
+<link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="shortcut icon" href="images/spectres-logo_black.png" />
+<script type="text/javascript" src="javascript/jquery-1.12.4.min.js"></script>
+<script type="text/javascript"
+	src="javascript/jquery.cookies.2.2.0.min.js"></script>
+<script type="text/javascript" src="javascript/jquery.tmpl.min.js"></script>
+</head>
+<body>
+	<!-- header and navbar -->
+	<header id="headContainer">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/"><img alt=""
+						src="images/spectres-02-1.png" class="brand-img" /></a>
+				</div>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/">Home</a></li>
+					<li><a href="/users">Users</a></li>
+					<li><a href="/docs">Documents</a></li>
+					<!-- 					<li><a href="/admin">Administration</a></li> -->
+					<li><a href="javascript: document.logoutForm.submit()">Log Out</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<div class="container">
+		<div class="mainbox col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="panel-title text-center" th:text="${name}"></div>
+				</div>
+				<div class="panel-body">
+					<br />
+					<span th:text="${content}"></span>
+					<br />
+					<br />
+					<p class="lead">
+						<input class="btn btn-primary btn-md" onclick='javascript:window.history.back()' value='Back' type='button' />
+						<input class="btn btn-primary btn-md" onclick='javascript:window.history.forward()' value='Next' type='button'  />
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<form name="logoutForm" th:action="@{/logout}" method="post"
+		th:hidden="true">
+		<input type="submit" value="Log Out" />
+	</form>
+
+
+	<div id="particles"></div>
+	<script type="text/javascript" src="javascript/particles.js"></script>
+</body>
+</html>
