@@ -1,0 +1,33 @@
+DROP DATABASE IF EXISTS endavaCTF;
+CREATE DATABASE endavaCTF;
+USE endavaCTF;
+SHOW tables;
+CREATE TABLE users (user_id int(6), first_name varchar(15), last_name varchar(15), user varchar(15), password varchar(32), last_login TIMESTAMP, failed_login int(3), PRIMARY KEY (user_id));
+INSERT INTO users VALUES
+    ('1','Finn','Mertens','finn',MD5('hero'), NOW(), '0'),
+    ('2','Marceline','Abadeer','marceline',MD5('vampirequeen'), NOW(), '0'),
+    ('3','Princess','Bubblegum','pb',MD5('gummy'), NOW(), '0'),
+    ('4','Simon','Petrikov','iceking',MD5('magiccrown'), NOW(), '0'),
+    ('5','Jake','The Dog','jake',MD5('baconpancakes'), NOW(), '0');
+     
+CREATE TABLE relics (relic_id int(6), relic_name varchar(25), relic_price int(10), added TIMESTAMP, in_stock int(3), PRIMARY KEY (relic_id));
+INSERT INTO relics VALUES
+    ('1', 'Time Totem','754',now(),'10'),
+    ('2', 'Finn Cake','200',now(),'7'),
+    ('3', 'Hambo','999999',now(),'1'),
+    ('4', 'Bag of Holding','200',now(),'11'),
+    ('5', 'Fiona and Cake the book','85',now(),'999'),
+    ('6', 'Armor of Zeldron','8888',now(),'1'),
+    ('7', 'Demon Heart','9500',now(),'0'),
+    ('8', 'Everything Burito','120',now(),'85'),
+    ('9', 'Bug Milk','20',now(),'778');
+
+CREATE TABLE secrets (secret_id smallint UNSIGNED NOT NULL AUTO_INCREMENT, secret varchar(300), name varchar(100), PRIMARY KEY (secret_id));
+INSERT INTO secrets VALUES 
+	('1','Bug milk is a key ingredient in gaining access to the Nightosphere.','Bug Milk'),
+	('2','Candy Zombie flesh is highly contagious, and will turn one into a zombie if consumed.','Candy Zombie Flesh'),
+	('3','Use chocolate cupcake mix or make chocolate cupcakes from scratch. Frost with vanilla frosting and draw a Finn face on them with chocolate frosting. Use marshmallows for ears.','Finn Cakes'),
+	('4','When used, nunchaku whispers flag{ImABruceLeeNinjaDragon}.','Spectral nunchaku'),
+	('5','On the cover it says Fionna and Cake. The cover also shows Fionna and Ice King kissing. It appears to be written in some sort of binder and has no colors.','Fiona and Cake book'),
+	('6','Marcelines Heart is revealed to have a very similar appearance at the end of the stakes mini-series.','Demon Heart'),
+	('7','Wow, this is a great book. Man. So much history.','Rainicornicopia');
