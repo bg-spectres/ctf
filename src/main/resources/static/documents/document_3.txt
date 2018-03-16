@@ -1,1 +1,1 @@
-springbootdb
+CREATE TABLE users (user_id int(6), first_name varchar(15), last_name varchar(15), user varchar(15), password varchar(32), last_login TIMESTAMP, failed_login int(3), PRIMARY KEY (user_id));

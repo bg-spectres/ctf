@@ -1,1 +1,1 @@
-springbootdb
+webuser=user

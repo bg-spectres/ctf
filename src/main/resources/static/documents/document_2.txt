@@ -1,1 +1,1 @@
-springbootdb
+webpassword=password

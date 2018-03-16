@@ -1,1 +1,1 @@
-springbootdb
+CREATE TABLE relics (relic_id int(6), relic_name varchar(25), relic_price int(10), added TIMESTAMP, in_stock int(3), PRIMARY KEY (relic_id));

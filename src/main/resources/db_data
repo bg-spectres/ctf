@@ -27,7 +27,7 @@ INSERT INTO secrets VALUES
 	('1','Bug milk is a key ingredient in gaining access to the Nightosphere.','Bug Milk'),
 	('2','Candy Zombie flesh is highly contagious, and will turn one into a zombie if consumed.','Candy Zombie Flesh'),
 	('3','Use chocolate cupcake mix or make chocolate cupcakes from scratch. Frost with vanilla frosting and draw a Finn face on them with chocolate frosting. Use marshmallows for ears.','Finn Cakes'),
-	('4','When used, nunchaku whispers flag{ImABruceLeeNinjaDragon}.','Spectral nunchaku'),
+	('4','When used, nunchaku whispers flag{dragana.drca}.','Spectral nunchaku'),
 	('5','On the cover it says Fionna and Cake. The cover also shows Fionna and Ice King kissing. It appears to be written in some sort of binder and has no colors.','Fiona and Cake book'),
 	('6','Marcelines Heart is revealed to have a very similar appearance at the end of the stakes mini-series.','Demon Heart'),
 	('7','Wow, this is a great book. Man. So much history.','Rainicornicopia');

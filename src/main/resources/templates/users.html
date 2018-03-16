@@ -7,9 +7,9 @@
 <link rel="stylesheet" href="css/bootstrap.css" />
 <link rel="shortcut icon" href="images/spectres-logo_black.png" />
 <script type="text/javascript" src="javascript/jquery-1.12.4.min.js"></script>
-<script type="text/javascript"
-	src="javascript/jquery.cookies.2.2.0.min.js"></script>
+<script type="text/javascript" src="javascript/jquery.cookies.2.2.0.min.js"></script>
 <script type="text/javascript" src="javascript/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="javascript/lib.js"></script>
 </head>
 <body>
 	<!-- header and navbar -->
@@ -25,7 +25,7 @@
 					<li><a href="/">Home</a></li>
 					<li><a href="/users">Users</a></li>
 					<li><a href="/docs">Documents</a></li>
-					<!-- 					<li><a href="/admin">Administration</a></li> -->
+					<li id="admin_link"><a href="javascript: goToAdmin()">Administration</a></li>
 					<li><a href="javascript: document.logoutForm.submit()">Log Out</a></li>
 				</ul>
 			</div>
@@ -44,8 +44,8 @@
 						<code th:text="${sevens}"></code>
 					</div>
 					<div th:unless="${areyoulucky}">	
-						<p class="lead">Cats Cats Cats!</p>
-						<img src="images/grumpy.png" alt="https://manytools.org/hacker-tools/"/>
+						<p class="lead">Try again? Random Lucky Number is <span th:text="${sevens}"></span></p>
+						<img class="cat" src="images/grumpy.png" alt="https://manytools.org/hacker-tools/steganography-encode-text-into-image/"/>
 					</div>
 					<br /> <br />
 					<p class="lead">
@@ -63,5 +63,8 @@
 
 	<div id="particles"></div>
 	<script type="text/javascript" src="javascript/particles.js"></script>
+	<script type="text/javascript">
+		if (isAdmin() == false) document.getElementById("admin_link").style.display = "none";
+	</script>
 </body>
 </html>

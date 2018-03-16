@@ -1,7 +1,9 @@
 body {
     background-color: white;
 }
-
+.cat {
+	max-width: 200px;
+}
 #loginbox {
     margin-top: 30px;
 }

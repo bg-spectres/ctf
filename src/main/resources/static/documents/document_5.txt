@@ -1,1 +1,1 @@
-springbootdb
+CREATE TABLE secrets (secret_id smallint UNSIGNED NOT NULL AUTO_INCREMENT, secret varchar(300), name varchar(100), PRIMARY KEY (secret_id));

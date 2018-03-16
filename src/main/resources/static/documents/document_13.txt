@@ -1,1 +1,1 @@
-springbootdb
+spring.datasource.password=spectres1!

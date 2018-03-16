@@ -17,7 +17,7 @@
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="/"><img alt="flag{vladan.the.boss}" src="images/spectres-02-1.png" class="brand-img" /></a>
+					<a class="navbar-brand" href="/"><img alt="" src="images/spectres-02-1.png" class="brand-img" /></a>
 				</div>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -34,30 +34,28 @@
 		<div class="mainbox col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<div class="panel-title text-center">Hello, and welcome to our first Capture The Flag!</div>
+					<div class="panel-title text-center" th:text="${greeting}"></div>
 				</div>
 				<div class="panel-body">
-					<p class="lead" style="text-align: center;">
-						Goal of the game is - to have <b>fun</b>! :)
-					</p>
 					<br />
-					<p class="">Ooor... technically speaking - explore this website and find secret keys.</p>
-					<p class="">
-						Here's a freebie - keys will look something like this:
-						<code>flag{itja.tzar}</code>
-					</p>
-					<hr class="my-4" />
-					<p class="">You might want to keep track of the keys you find. Feel free to write them down, but it's not a competition!</p>
-					<p class="">There are 9 keys available on this site (the first was just above you!). Some of them will be more difficult to find than others. Here are some tips to remember:</p>
+					
+					<form name="form" id="form" class="form-horizontal" th:action="@{/search}" method="post">
+
+						<div class="input-group">
+							<span class="input-group-addon"> <i class="glyphicon glyphicon-user"></i></span> <input id="name" type="text" class="form-control" name="name" value="" placeholder="table name" />
+						</div>
+
+						<div class="form-group">
+							<!-- Button -->
+							<div class="col-sm-12 controls">
+								<input type="submit" value="Submit" class="btn btn-primary pull-right" />
+							</div>
+						</div>
+
+					</form>
 					<ul>
-						<li>Right click on the web page and click "View Page Source" to the see the source code. Sometimes the developer left things behind!</li>
-						<li>Open the developer console in your browser and view the network requests. Maybe there are weird requests on a page?</li>
-						<li>Watch for cookies on the web pages. Sometimes they're used for authentication.</li>
+						<li th:each="item : ${items}" th:text="${item.toString()}"></li>
 					</ul>
-					<br />
-					<p class="lead">
-						<a class="btn btn-primary btn-lg" href="/" role="button">Happy Hacking!</a>
-					</p>
 				</div>
 			</div>
 		</div>
@@ -70,7 +68,8 @@
 	<div id="particles"></div>
 	<script type="text/javascript" src="javascript/particles.js"></script>
 	<script type="text/javascript">
-		if (isAdmin() == false) document.getElementById("admin_link").style.display = "none";
+		if (isAdmin() == false)
+			document.getElementById("admin_link").style.display = "none";
 	</script>
 </body>
 </html>
