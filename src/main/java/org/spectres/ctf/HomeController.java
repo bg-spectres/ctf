@@ -82,7 +82,7 @@ public class HomeController {
 			m.addAttribute("items", secretRepository.findAll());
 			break;
 		default:
-			m.addAttribute("items", userRepository.findAll());
+			m.addAttribute("items", Arrays.asList("No", "Such", "Table"));
 			break;
 		}
 		
