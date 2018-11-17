@@ -2,6 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
 <meta charset="UTF-8" />
+
+<meta th:name="_csrf" th:content="${_csrf.token}"/>
+<meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+
 <title>Spectres CTF</title>
 <link rel="stylesheet" type="text/css" href="css/my.css" />
 <link rel="stylesheet" href="css/bootstrap.css" />
@@ -41,77 +45,30 @@
 				<div class="panel-heading">
 					<div class="panel-title text-center" th:text="${greeting}"></div>
 				</div>
-				<script>
-				function createTable(tableData) {
-					  var table = document.getElementById('data');
-					  var tableBody = document.createElement('tbody');
+				<div class="panel-body">
+					<p>Leave us a comment so we can improve</p>
+
+						<div class="input-group">
+							<span class="input-group-addon"> <i class="glyphicon glyphicon-book"></i></span> <input id="comment" type="text" class="form-control" name="comment" value="" placeholder="Your Comment" />
+						</div>
+
+
+						<div class="form-group">
+							<!-- Button -->
+							<div class="col-sm-12 controls">
+								<input type="submit" value="Post Comment" class="btn btn-primary pull-right" onclick="appendComment()"/>
+							</div>
+						</div>
+					<p style="color:white">Don't get too creative, all this is fake anyway. Use basic attacks.</p>
+					<br />
+					<h3>Comments:</h3>
+					<div id="comments">
+					</div>
 					
-
-					
-					    for(var i in tableData)
-					    {
-					    	var row = document.createElement('tr');
-					    	
-					    	
-					        var name = tableData[i].name;
-					        var cell = document.createElement('td');
-					        cell.appendChild(document.createTextNode(name));
-					        row.appendChild(cell);
-					        var city = tableData[i].city;
-					        var cell = document.createElement('td');
-					        cell.appendChild(document.createTextNode(city));
-					        row.appendChild(cell);
-					        var phone = tableData[i].phone;
-					        var cell = document.createElement('td');
-					        cell.appendChild(document.createTextNode(phone));
-					        row.appendChild(cell);
-					        tableBody.appendChild(row);
-					    }
-					    
-					    
-					  
-					
-					  table.appendChild(tableBody);
-					}
-				
-				window.onload = function() {
-					jQuery.ajax({
-			            url: "/api/users",
-			            type: "GET",
-
-			            contentType: 'application/json; charset=utf-8',
-			            success: function(resultData) {
-			            	var users = JSON.parse(resultData);
-			                console.log(users);
-			                createTable(users);
-
-			            },
-			            error : function(jqXHR, textStatus, errorThrown) {
-			            },
-
-			            timeout: 120000,
-			        });
-					
-				};
-				</script>
-				<table id="data" class="table table-striped">
-				    <thead>
-				    <tr>
-				        <th th:text="Name"></th>
-				        <th th:text="City"></th>
-				        <th th:text="Phone"></th>
-				    </tr>
-				    </thead>
-
-				</table>
-				
-				
+				</div>
 			</div>
-			<p>Note: Those are dummy users. They are not on the system.</p>
 			
-			<form action="/addusers">
-			    <input type="submit" class="btn btn-primary btn-lg" th:disabled="${not superadminRole}"  value="Add Users" />
-			</form>
+			
 
 		</div>
 	</div>
@@ -125,6 +82,41 @@
 	<script type="text/javascript" src="javascript/particles.js"></script>
 	<script type="text/javascript">
 		if (isAdmin() == false) document.getElementById("admin_link").style.display = "none";
+	</script>
+	
+	<script>
+		function appendComment(){
+			var comment = document.getElementById("comment").value;
+			console.log(comment);
+			var div = document.getElementById("comments");
+			
+			var json = '{ "comment" : "' + comment + '"}';
+		    URL = "/api/comment"; 		    
+		    var token = $("meta[name='_csrf']").attr("content"); 
+		    var header = $("meta[name='_csrf_header']").attr("content");
+		    var xmlhttp = new XMLHttpRequest();
+		    xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+		    xmlhttp.open("POST", URL, false);
+		    xmlhttp.setRequestHeader("Content-Type", "application/json");
+		    xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+		    xmlhttp.setRequestHeader(header, token);
+		    xmlhttp.send(json);
+		    if (xmlhttp.responseText != "") {
+			    alert(xmlhttp.responseText);
+		    }
+			
+			if (comment != "" || comment != null) {
+				var newcontent = document.createElement('div');
+			    newcontent.innerHTML ='<div><p>User <b>user</b> wrote at ' + new Date().toLocaleString() + '</p><p><i>' + comment + '</i><br /></p><br /></div>';
+				div.appendChild(newcontent.firstChild);
+			}
+		}
+		
+		function callbackFunction(xmlhttp) 
+		{
+		    console.log(xmlhttp);
+			//alert(xmlhttp.responseXML);
+		}
 	</script>
 </body>
 </html>

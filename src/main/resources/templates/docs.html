@@ -25,7 +25,11 @@
 					<li><a href="/">Home</a></li>
 					<li><a href="/users">Users</a></li>
 					<li><a href="/docs">Documents</a></li>
+					<li><a href="/validate">Validate</a></li>
+					<li><a href="/lucky7">Lucky Sevens</a></li>
 					<li id="admin_link"><a href="javascript: goToAdmin()">Administration</a></li>
+					<li th:if="${superadminRole}"><a href="/superadmin">Super Admin</a></li>
+					<li><a href="/contact">Contact Us</a></li>
 					<li><a href="javascript: document.logoutForm.submit()">Log Out</a></li>
 				</ul>
 			</div>
@@ -43,11 +47,14 @@
 						<li th:each="document : ${documents}"><a th:href="@{/details?name={doc}(doc=${document})}" th:text="${document}">1</a></li>
 					</ul>
 					<br />
+					<!-- At some point in time we may need this file also /secretFolder/secretData.rar -->
 					<br />
+					<!-- 
 					<p class="lead">
 						<input class="btn btn-primary btn-md" onclick='javascript:window.history.back()' value='Back' type='button' />
 						<input class="btn btn-primary btn-md" onclick='javascript:randomDoc()' value='Next' type='button'  />
 					</p>
+					 -->
 				</div>
 			</div>
 		</div>

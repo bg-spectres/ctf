@@ -17,8 +17,7 @@
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="/"><img alt=""
-						src="images/spectres-02-1.png" class="brand-img" /></a>
+					<a class="navbar-brand" href="/"><img alt="" src="images/spectres-02-1.png" class="brand-img" /></a>
 				</div>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -42,16 +41,30 @@
 					<div class="panel-title text-center" th:text="${greeting}"></div>
 				</div>
 				<div class="panel-body">
-					<p>Tm9zZXkgbGl0dGxlIG9uZSBhcmVuJ3QgeW91PyBmbGFne290cHlyY30=</p>
+					<br />
+					
+					<form name="form" id="form" class="form-horizontal" th:action="@{/search}" method="post">
+
+						<div class="input-group">
+							<span class="input-group-addon"> <i class="glyphicon glyphicon-user"></i></span> <input id="name" type="text" class="form-control" name="name" value="" placeholder="table name" />
+						</div>
+
+						<div class="form-group">
+							<!-- Button -->
+							<div class="col-sm-12 controls">
+								<input type="submit" value="Submit" class="btn btn-primary pull-right" />
+							</div>
+						</div>
+
+					</form>
+					<ul>
+						<li th:each="item : ${items}" th:text="${item.toString()}"></li>
+					</ul>
 				</div>
 			</div>
-			
-			
-
 		</div>
 	</div>
-	<form name="logoutForm" th:action="@{/logout}" method="post"
-		th:hidden="true">
+	<form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
 		<input type="submit" value="Log Out" />
 	</form>
 
@@ -59,7 +72,8 @@
 	<div id="particles"></div>
 	<script type="text/javascript" src="javascript/particles.js"></script>
 	<script type="text/javascript">
-		if (isAdmin() == false) document.getElementById("admin_link").style.display = "none";
+		if (isAdmin() == false)
+			document.getElementById("admin_link").style.display = "none";
 	</script>
 </body>
 </html>

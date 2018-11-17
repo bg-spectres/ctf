@@ -41,78 +41,23 @@
 				<div class="panel-heading">
 					<div class="panel-title text-center" th:text="${greeting}"></div>
 				</div>
-				<script>
-				function createTable(tableData) {
-					  var table = document.getElementById('data');
-					  var tableBody = document.createElement('tbody');
-					
-
-					
-					    for(var i in tableData)
-					    {
-					    	var row = document.createElement('tr');
-					    	
-					    	
-					        var name = tableData[i].name;
-					        var cell = document.createElement('td');
-					        cell.appendChild(document.createTextNode(name));
-					        row.appendChild(cell);
-					        var city = tableData[i].city;
-					        var cell = document.createElement('td');
-					        cell.appendChild(document.createTextNode(city));
-					        row.appendChild(cell);
-					        var phone = tableData[i].phone;
-					        var cell = document.createElement('td');
-					        cell.appendChild(document.createTextNode(phone));
-					        row.appendChild(cell);
-					        tableBody.appendChild(row);
-					    }
-					    
-					    
-					  
-					
-					  table.appendChild(tableBody);
-					}
-				
-				window.onload = function() {
-					jQuery.ajax({
-			            url: "/api/users",
-			            type: "GET",
-
-			            contentType: 'application/json; charset=utf-8',
-			            success: function(resultData) {
-			            	var users = JSON.parse(resultData);
-			                console.log(users);
-			                createTable(users);
-
-			            },
-			            error : function(jqXHR, textStatus, errorThrown) {
-			            },
-
-			            timeout: 120000,
-			        });
-					
-				};
-				</script>
-				<table id="data" class="table table-striped">
-				    <thead>
-				    <tr>
-				        <th th:text="Name"></th>
-				        <th th:text="City"></th>
-				        <th th:text="Phone"></th>
-				    </tr>
-				    </thead>
-
-				</table>
-				
-				
+				<div class="panel-body">
+					<br />
+					<div th:if="${areyoulucky}">
+						<p class="lead">Found it!</p>
+						<code th:text="${sevens}"></code>
+					</div>
+					<div th:unless="${areyoulucky}">	
+						<p class="lead">Try again? Random Lucky Number is <span th:text="${sevens}"></span></p>
+						<img class="cat" src="images/grumpy.png" alt="https://manytools.org/hacker-tools/steganography-encode-text-into-image/"/>
+					</div>
+					<br /> <br />
+					<p class="lead">
+						<a th:href="@{/vegas}" class="btn btn-primary btn-lg" type='button'>Try your luck?</a> 
+					</p>
+					<p>Hint: You need to get 7777 for great rewards!</p>
+				</div>
 			</div>
-			<p>Note: Those are dummy users. They are not on the system.</p>
-			
-			<form action="/addusers">
-			    <input type="submit" class="btn btn-primary btn-lg" th:disabled="${not superadminRole}"  value="Add Users" />
-			</form>
-
 		</div>
 	</div>
 	<form name="logoutForm" th:action="@{/logout}" method="post"

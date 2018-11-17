@@ -41,78 +41,29 @@
 				<div class="panel-heading">
 					<div class="panel-title text-center" th:text="${greeting}"></div>
 				</div>
-				<script>
-				function createTable(tableData) {
-					  var table = document.getElementById('data');
-					  var tableBody = document.createElement('tbody');
-					
+				<div class="panel-body">
 
-					
-					    for(var i in tableData)
-					    {
-					    	var row = document.createElement('tr');
-					    	
-					    	
-					        var name = tableData[i].name;
-					        var cell = document.createElement('td');
-					        cell.appendChild(document.createTextNode(name));
-					        row.appendChild(cell);
-					        var city = tableData[i].city;
-					        var cell = document.createElement('td');
-					        cell.appendChild(document.createTextNode(city));
-					        row.appendChild(cell);
-					        var phone = tableData[i].phone;
-					        var cell = document.createElement('td');
-					        cell.appendChild(document.createTextNode(phone));
-					        row.appendChild(cell);
-					        tableBody.appendChild(row);
-					    }
-					    
-					    
-					  
-					
-					  table.appendChild(tableBody);
-					}
-				
-				window.onload = function() {
-					jQuery.ajax({
-			            url: "/api/users",
-			            type: "GET",
+					<form name="form" id="form" class="form-horizontal" th:action="@{/validateFlag}" method="post">
 
-			            contentType: 'application/json; charset=utf-8',
-			            success: function(resultData) {
-			            	var users = JSON.parse(resultData);
-			                console.log(users);
-			                createTable(users);
+						<div class="input-group">
+							<span class="input-group-addon"> <i class="glyphicon glyphicon-text"></i></span> <input id="flag" type="text" class="form-control" name="flag" value="" placeholder="flag" />
+						</div>
 
-			            },
-			            error : function(jqXHR, textStatus, errorThrown) {
-			            },
-
-			            timeout: 120000,
-			        });
-					
-				};
-				</script>
-				<table id="data" class="table table-striped">
-				    <thead>
-				    <tr>
-				        <th th:text="Name"></th>
-				        <th th:text="City"></th>
-				        <th th:text="Phone"></th>
-				    </tr>
-				    </thead>
-
-				</table>
-				
-				
+						<div class="form-group">
+							<!-- Button -->
+							<div class="col-sm-12 controls">
+								<input type="submit" value="Check Flag" class="btn btn-primary pull-right" />
+							</div>
+						</div>
+						
+					</form>
+					<div><span th:text="${message}"></span></div><br />
+					<div>Flags Found: <span th:text="${flagsFound}"></span></div>
+					<div>Points: <span th:text="${points}"></span></div>
+				</div>
 			</div>
-			<p>Note: Those are dummy users. They are not on the system.</p>
 			
-			<form action="/addusers">
-			    <input type="submit" class="btn btn-primary btn-lg" th:disabled="${not superadminRole}"  value="Add Users" />
-			</form>
-
+			
 		</div>
 	</div>
 	<form name="logoutForm" th:action="@{/logout}" method="post"
