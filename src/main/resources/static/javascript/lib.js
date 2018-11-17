@@ -16,7 +16,7 @@ function isAdmin() {
 
 function goToAdmin() {
 	if (isAdmin() == true) 
-		window.location.href = "/admin";
+		window.location.href = "/adm1n";
 	else 
 		window.location.href = "/users";
 };
