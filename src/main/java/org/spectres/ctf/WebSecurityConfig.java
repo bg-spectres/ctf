@@ -16,7 +16,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 		web
 			.ignoring()
-			.antMatchers("/css/**", "/images/**", "/javascript/**", "/fonts/**");
+			.antMatchers("/css/**", "/images/**", "/javascript/**", "/fonts/**", "/secretFolder/**");
 	}
 	
     @Override
@@ -24,6 +24,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 .antMatchers("/login/**").permitAll()
+                .antMatchers("/forgotpassword/**").permitAll()
+                .antMatchers("/superadmin/**").hasRole("ADMIN")
+                .antMatchers("/search/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
@@ -36,8 +39,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-            .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER");
+        auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
+        auth.inMemoryAuthentication().withUser("admin").password("SuperSayan").roles("ADMIN", "USER");
+        auth.inMemoryAuthentication().withUser("superadmin").password("SuperSayan2").roles("ADMIN", "USER");
     }
 }
