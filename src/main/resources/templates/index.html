@@ -71,7 +71,8 @@
 					function share() {
 						  /* Get the text field */
 						  var copyText = document.getElementById("hiddenText");
-
+						  console.log("copied link to clipboard is: " + copyText.value);
+						  
 						  /* Select the text field */
 						  copyText.select();
 
@@ -80,6 +81,7 @@
 
 						  /* Alert the copied text */
 						  alert("Copied share link to clipboard. Be sure to share with all your friends!");
+						  
 						}
 					</script>
 				</div>
