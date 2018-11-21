@@ -73,11 +73,11 @@ public class HomeService {
 		flags.put("thieves", 2);
 		flags.put("prototype", 2);
 		flags.put("otpyrc", 2);
+		flags.put("canttalknow", 2);
 		flags.put("mathematical", 3);
 		flags.put("gohan", 3);
 		flags.put("ihurtyoubecauseiloveyou", 3);
-		flags.put("greataxe", 3);
-		flags.put("perceive", 3);
+		//flags.put("perceive", 3);
 		
 		
 	}
