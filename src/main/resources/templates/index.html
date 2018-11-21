@@ -71,7 +71,7 @@
 					function share() {
 						  /* Get the text field */
 						  var copyText = document.getElementById("hiddenText");
-						  console.log("copied link to clipboard is: " + copyText.value);
+						  console.log("Copied link: " + copyText.value);
 						  
 						  /* Select the text field */
 						  copyText.select();
@@ -98,7 +98,7 @@
 	<script type="text/javascript">
 		if (isAdmin() == false) document.getElementById("admin_link").style.display = "none";
 	</script>
-	<textarea rows="1" cols="1" style="visibility:hidden;" id="hiddenText">
+	<textarea rows="1" cols="1" style="margin-left:-150px;" id="hiddenText">
 	http://secondendavactffakeurl.com/share?user=user&amp;shareMode=happy&amp;testCookie=d1lEZk9rSHd3WnpBd2JkWGRhN1RYdz09OkEflag{yudothis}wQ21pSFJVZzBpVDhhUENaK3ZPV2c9PQ
 	</textarea>
 </body>
