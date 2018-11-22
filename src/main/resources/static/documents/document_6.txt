@@ -1,1 +1,1 @@
-flag{milja.nnnna}
+flag{banana}
